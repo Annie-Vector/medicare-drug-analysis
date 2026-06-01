@@ -78,14 +78,20 @@ def plot_top10_drugs(df):
 
 def plot_cost_savings(df):
     overall = df[df['Mftr_Name'] == 'Overall'].copy()
-    brand = overall[overall['Brnd_Name'] != overall['Gnrc_Name']]
     
+    brand = overall[overall['Brnd_Name'] != overall['Gnrc_Name']]
+    generic = overall[overall['Brnd_Name'] == overall['Gnrc_Name']]
+    brand_avg = brand['Tot_Spndng_2023'].mean()
+    generic_avg = generic['Tot_Spndng_2023'].mean()
+    ratio = generic_avg / brand_avg
     brand_spending = brand['Tot_Spndng_2023'].sum()
-    generic_avg_ratio = 10710247 / 52734086
-    potential_savings = brand_spending * (1 - generic_avg_ratio)
+    potential_savings = brand_spending * (1 - ratio)
+    
+    print("\n=== Cost Saving Analysis ===")
+    print(f"Potential Savings: ${potential_savings/1e9:.1f}B")
     
     categories = ['Current Brand\nSpending', 'If Switched\nto Generic', 'Potential\nSavings']
-    values = [brand_spending, brand_spending * generic_avg_ratio, potential_savings]
+    values = [brand_spending, brand_spending * ratio, potential_savings]
     colors = ['#E74C3C', '#2ECC71', '#F39C12']
     
     plt.figure(figsize=(10, 6))
@@ -102,9 +108,7 @@ def plot_cost_savings(df):
     
     plt.tight_layout()
     plt.savefig('charts/cost_savings.png')
-    print(f"Potential savings if switched to generic: ${potential_savings/1e9:.1f}B")
     print("Chart saved to charts/cost_savings.png")
-
 
 def plot_spending_trend(df):
     overall = df[df['Mftr_Name'] == 'Overall'].copy()
