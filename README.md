@@ -33,15 +33,18 @@ This project explores Medicare drug spending trends and evaluates potential area
 * Python
 * Pandas
 * Matplotlib
+* Data Cleaning
+* Exploratory Data Analysis (EDA)
+* Healthcare Cost Analysis
 
 ---
 
 ## Project Structure
 
-```text
-medicare-drug-analysis/
+```medicare-drug-analysis/
 │
 ├── main.py
+├── dashboard.py
 ├── analysis/
 │   └── analyzer.py
 ├── data/
@@ -58,12 +61,30 @@ medicare-drug-analysis/
 
 ## Methodology
 
-1. Load and validate Medicare drug spending data
-2. Classify medications as Brand or Generic
-3. Compare average spending between Brand and Generic drugs
-4. Identify top spending medications
-5. Analyze Medicare spending trends from 2019–2023
-6. Estimate potential savings under a generic substitution scenario
+1. Data acquisition and validation
+2. Data cleaning and preprocessing
+3. Drug classification (Brand vs Generic)
+4. Spending comparison analysis
+5. Trend analysis (2019–2023)
+6. Cost-saving scenario evaluation
+
+---
+## Interactive Dashboard
+
+An interactive Streamlit dashboard was developed to support dynamic exploration of Medicare drug spending data.
+
+The dashboard allows users to:
+
+* Explore spending patterns through interactive visualizations
+* Compare brand and generic drug spending
+* Analyze top-spending medications
+* Review Medicare spending trends over time
+
+Run locally:
+
+```bash
+streamlit run dashboard.py
+```
 
 ---
 
@@ -119,20 +140,18 @@ Key Finding:
 
 ## Key Insights
 
-* Brand medications are a major driver of Medicare spending.
-* Drug spending is concentrated among a relatively small number of medications.
-* Generic utilization may offer opportunities for cost savings.
-* Spending analysis can help identify high-cost areas and support cost-management strategies.
-
+* Brand medications are a major driver of Medicare spending and consistently account for substantially higher costs than generic alternatives.
+* Medicare spending is highly concentrated among a small number of drugs, suggesting targeted cost-management strategies may have outsized impact.
+* Generic utilization represents a potential opportunity for reducing healthcare expenditures when clinically appropriate alternatives are available.
+* Data-driven spending analysis can help policymakers, insurers, and healthcare organizations identify high-cost areas and prioritize intervention efforts.
 ---
 
 ## Future Improvements
 
-* Add an interactive Streamlit dashboard
 * Analyze drug categories (Cardiovascular, Diabetes, Oncology, etc.)
 * Build spending forecasting models
 * Incorporate PBM-focused utilization metrics
-
+* Deploy the Streamlit dashboard as a public web application
 ---
 
 ## Project Motivation
